@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.SpaceGame;
 import com.mygdx.game.entities.Asteroid;
 import com.mygdx.game.entities.Bullet;
+import com.mygdx.game.entities.Explosion;
 
 public class MainGameScreen implements Screen {
 
@@ -52,6 +53,7 @@ public class MainGameScreen implements Screen {
 
     ArrayList<Bullet>bullets;
     ArrayList<Asteroid>asteroids;
+    ArrayList<Explosion>explosions;
 
     BitmapFont scoreFont;
     int score;
@@ -63,6 +65,7 @@ public class MainGameScreen implements Screen {
 
         bullets = new ArrayList<Bullet>();
         asteroids=new ArrayList<Asteroid>();
+        explosions=new ArrayList<Explosion>();
         scoreFont=new BitmapFont(Gdx.files.internal("fonts/score.fnt"));
         score =0;
 
@@ -134,6 +137,14 @@ public class MainGameScreen implements Screen {
             }
         }
 
+        //update explosions
+        ArrayList<Explosion>explosionsToRemove=new ArrayList<Explosion>();
+        for(Explosion explosion:explosions){
+            explosion.update(delta);
+            if(explosion.remove)
+                explosionsToRemove.add(explosion);
+        }
+        explosions.removeAll(explosionsToRemove);
 
         //Movement code
         if (Gdx.input.isKeyPressed(Keys.LEFT)) {//left
@@ -207,6 +218,7 @@ public class MainGameScreen implements Screen {
                 if(bullet.getCollisionRect().collidesWith(asteroid.getCollisionRect())){
                     bulletsToRemove.add(bullet);
                     asteroidsToRemove.add(asteroid);
+                    explosions.add(new Explosion(asteroid.getX(),asteroid.getX()));
                     score+=100;
                 }
             }
@@ -225,6 +237,9 @@ public class MainGameScreen implements Screen {
         }
         for(Asteroid asteroid:asteroids) {
             asteroid.render(game.batch);
+        }
+        for(Explosion explosion:explosions){
+            explosion.render(game.batch);
         }
 
         TextureRegion currentFrame = rolls[roll].getKeyFrame(stateTime, true);
