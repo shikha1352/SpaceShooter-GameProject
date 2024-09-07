@@ -23,9 +23,7 @@ public class Bullet {
     public Bullet(float x) {
         this.x=x;
         this.y=DEFAULT_Y;
-
         this.rect=new CollisionRect(x,y,WIDTH,HEIGHT);
-
         if(texture==null) {
             texture=new Texture("bullet.png");
         }
