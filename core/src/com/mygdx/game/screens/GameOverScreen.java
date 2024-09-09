@@ -9,6 +9,9 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.SpaceGame;
+
+import tnt.hollowbit.spacegame.tools.ScrollingBackground;
+
 import com.badlogic.gdx.Preferences;
 
 public class GameOverScreen implements Screen {
@@ -18,6 +21,7 @@ public class GameOverScreen implements Screen {
     int score, highscore;
     Texture gameOverBanner;
     BitmapFont scoreFont;
+    private float delta;
 
     public GameOverScreen(SpaceGame game, int score) {
         this.game = game;
@@ -34,6 +38,9 @@ public class GameOverScreen implements Screen {
         // Load textures and fonts
         gameOverBanner = new Texture("game_over.png");
         scoreFont = new BitmapFont(Gdx.files.internal("fonts/score.fnt"));
+
+        game.scrollingBackground.setSpeedFixed(true);
+        game.scrollingBackground.setSpeed(ScrollingBackground.DEFAULT_SPEED);
     }
 
     @Override
@@ -45,6 +52,9 @@ public class GameOverScreen implements Screen {
     public void render(float v) {
         ScreenUtils.clear(0, 0, 0, 1);
         game.batch.begin();
+
+        game.scrollingBackground.updateAndRender(delta, game.batch);
+        
         game.batch.draw(gameOverBanner, Gdx.graphics.getWidth() / 2 - MIRROR_WIDTH / 2, Gdx.graphics.getHeight() - MIRROR_HIGHT - 15, MIRROR_WIDTH, MIRROR_HIGHT);
         GlyphLayout scoreLayout=new GlyphLayout(scoreFont,"Score: \n"+score, Color.WHITE,0, Align.left,false);
         GlyphLayout highscoreLayout=new GlyphLayout(scoreFont,"highscore: \n"+highscore, Color.WHITE,0, Align.left,false);

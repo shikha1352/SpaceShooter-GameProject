@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.screens.MainGameScreen;
 import com.mygdx.game.screens.MainMenuScreen;
 
+import tnt.hollowbit.spacegame.tools.ScrollingBackground;
+
 
 public class SpaceGame extends Game {
 
@@ -14,11 +16,13 @@ public class SpaceGame extends Game {
 	public static final int HEIGHT=720;
 
 	public SpriteBatch batch;
+	public ScrollingBackground scrollingBackground;
 
 	@Override
 	public void create () {
 
 		batch = new SpriteBatch();
+		this.scrollingBackground = new ScrollingBackground();
 		this.setScreen(new MainMenuScreen(this));
 	}
 
@@ -26,7 +30,12 @@ public class SpaceGame extends Game {
 	public void render () {
 		super.render();
 	}
-
+ 
+	@Override
+	public void resize(int width, int height) {
+		this.scrollingBackground.resize(width, height);
+		super.resize(width, height);
+	}
 
 
 }

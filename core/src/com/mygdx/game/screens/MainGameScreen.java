@@ -93,6 +93,8 @@ public class MainGameScreen implements Screen {
         rolls[2] = new Animation<TextureRegion>(SHIP_ANIMATION_SPEED, rollSpriteSheet[0]);//no tilt
         rolls[3] = new Animation<TextureRegion>(SHIP_ANIMATION_SPEED, rollSpriteSheet[3]);
         rolls[4] = new Animation<TextureRegion>(SHIP_ANIMATION_SPEED, rollSpriteSheet[4]);//all right
+
+        game.scrollingBackground.setSpeedFixed(false);
     }
 
     @Override
@@ -248,6 +250,8 @@ public class MainGameScreen implements Screen {
 
         ScreenUtils.clear(0, 0, 0, 1);
         game.batch.begin();
+
+        game.scrollingBackground.updateAndRender(delta, game.batch);
 
         GlyphLayout scoreLayout =new GlyphLayout(scoreFont,""+score);
         scoreFont.draw(game.batch,scoreLayout,Gdx.graphics.getWidth()/2-scoreLayout.width/2,Gdx.graphics.getHeight()-scoreLayout.height-10);
