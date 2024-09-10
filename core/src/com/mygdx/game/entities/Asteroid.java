@@ -6,7 +6,7 @@ import com.mygdx.game.screens.SpaceGame;
 import com.mygdx.game.tools.CollisionRect;
 
 public class Asteroid {
-    public static final int SPEED=250;
+    public static final int SPEED=50;
     public static final int WIDTH=32;
     public static final int HEIGHT=32;
     private static Texture texture;

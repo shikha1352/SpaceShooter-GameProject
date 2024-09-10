@@ -33,8 +33,8 @@ public class MainGameScreen implements Screen {
     public static final float ROLL_TIMER_SWITCH_TIME=0.15f;
     public static final float SHOOT_WAIT_TIME=0.3f;
 
-    public static final float MIN_ASTEROID_SPAWN_TIME=0.3f;
-    public static final float MAX_ASTEROID_SPAWN_TIME=0.6f;
+    public static final float MIN_ASTEROID_SPAWN_TIME=1.2f;
+    public static final float MAX_ASTEROID_SPAWN_TIME=1.5f;
 
     Animation<TextureRegion>[] rolls;
 
@@ -103,7 +103,6 @@ public class MainGameScreen implements Screen {
         rolls[3] = new Animation<TextureRegion>(SHIP_ANIMATION_SPEED, rollSpriteSheet[3]);
         rolls[4] = new Animation<TextureRegion>(SHIP_ANIMATION_SPEED, rollSpriteSheet[4]);//all right
 
-        game.scrollingBackground.setSpeedFixed(false);
     }
 
     @Override
@@ -246,7 +245,7 @@ public class MainGameScreen implements Screen {
                     bulletsToRemove.add(bullet);
                     asteroidsToRemove.add(asteroid);
                     explosions.add(new Explosion(asteroid.getX(),asteroid.getX()));
-                    score+=100;
+                    score+=20;
                 }
             }
         }
@@ -271,8 +270,8 @@ public class MainGameScreen implements Screen {
 
         ScreenUtils.clear(0, 0, 0, 1);
         game.batch.begin();
-
         game.scrollingBackground.updateAndRender(delta, game.batch);
+
 
         GlyphLayout scoreLayout =new GlyphLayout(scoreFont,""+score);
         scoreFont.draw(game.batch,scoreLayout,SpaceGame.WIDTH/2-scoreLayout.width/2,SpaceGame.HEIGHT-scoreLayout.height-10);

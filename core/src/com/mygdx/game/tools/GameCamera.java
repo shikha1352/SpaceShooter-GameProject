@@ -32,4 +32,7 @@ public class GameCamera {
         Vector3 unprojected = cam.unproject(inputScreen);
         return new Vector2(unprojected.x, unprojected.y);
     }
+
+    public void unproject(Vector3 touchPos) {
+    }
 }
