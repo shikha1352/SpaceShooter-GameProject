@@ -1,8 +1,8 @@
 package com.mygdx.game.entities;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.screens.SpaceGame;
 import com.mygdx.game.tools.CollisionRect;
 
 public class Asteroid {
@@ -17,7 +17,7 @@ public class Asteroid {
 
     public Asteroid(float x) {
         this.x=x;
-        this.y=Gdx.graphics.getHeight();
+        this.y=SpaceGame.HEIGHT;
         this.rect=new CollisionRect(x,y,WIDTH,HEIGHT);
 
         if(texture==null) {

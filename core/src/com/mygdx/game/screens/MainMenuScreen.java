@@ -5,7 +5,6 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.mygdx.game.SpaceGame;
 
 import tnt.hollowbit.spacegame.tools.ScrollingBackground;
 
@@ -45,7 +44,7 @@ public class MainMenuScreen implements Screen{
 
                 //Exit button 
                 int x = SpaceGame.WIDTH / 2 - EXIT_BUTTON_WIDTH / 2;
-                if(Gdx.input.getX()<x+EXIT_BUTTON_WIDTH && Gdx.input.getX()>x && SpaceGame.HEIGHT - Gdx.input.getY()<EXIT_BUTTON_Y+EXIT_BUTTON_HEIGHT && SpaceGame.HEIGHT - Gdx.input.getY()>EXIT_BUTTON_Y) {
+                if(game.cam.getInputInGameWorld().x < x+EXIT_BUTTON_WIDTH && game.cam.getInputInGameWorld().x >x && SpaceGame.HEIGHT - game.cam.getInputInGameWorld().y <EXIT_BUTTON_Y+EXIT_BUTTON_HEIGHT && SpaceGame.HEIGHT - game.cam.getInputInGameWorld().y >EXIT_BUTTON_Y) {
                     mainMenuScreen.dispose();
                     Gdx.app.exit();
                     
@@ -53,7 +52,7 @@ public class MainMenuScreen implements Screen{
 
                 // Play game button
                 x=SpaceGame.WIDTH/2-PLAY_BUTTON_WIDTH/2;
-                if(Gdx.input.getX()<x+PLAY_BUTTON_WIDTH && Gdx.input.getX()>x && SpaceGame.HEIGHT - Gdx.input.getY()<PLAY_BUTTON_Y+PLAY_BUTTON_HEIGHT && SpaceGame.HEIGHT - Gdx.input.getY()>PLAY_BUTTON_Y) {
+                if(game.cam.getInputInGameWorld().x <x+PLAY_BUTTON_WIDTH && game.cam.getInputInGameWorld().x >x && SpaceGame.HEIGHT - game.cam.getInputInGameWorld().y <PLAY_BUTTON_Y+PLAY_BUTTON_HEIGHT && SpaceGame.HEIGHT - game.cam.getInputInGameWorld().y >PLAY_BUTTON_Y) {
                     mainMenuScreen.dispose();
                     game.setScreen(new MainGameScreen(game));
                     
@@ -79,7 +78,7 @@ public class MainMenuScreen implements Screen{
 
         int x=SpaceGame.WIDTH/2-EXIT_BUTTON_WIDTH/2;
 
-        if(Gdx.input.getX()<x+EXIT_BUTTON_WIDTH && Gdx.input.getX()>x && SpaceGame.HEIGHT - Gdx.input.getY()<EXIT_BUTTON_Y+EXIT_BUTTON_HEIGHT && SpaceGame.HEIGHT - Gdx.input.getY()>EXIT_BUTTON_Y) {
+        if(game.cam.getInputInGameWorld().x <x+EXIT_BUTTON_WIDTH && game.cam.getInputInGameWorld().x >x && SpaceGame.HEIGHT - game.cam.getInputInGameWorld().y <EXIT_BUTTON_Y+EXIT_BUTTON_HEIGHT && SpaceGame.HEIGHT - game.cam.getInputInGameWorld().y >EXIT_BUTTON_Y) {
             game.batch.draw(exitButtonActive, x, EXIT_BUTTON_Y, EXIT_BUTTON_WIDTH, EXIT_BUTTON_HEIGHT);
            
         }else {
@@ -89,7 +88,7 @@ public class MainMenuScreen implements Screen{
 
         x=SpaceGame.WIDTH/2-PLAY_BUTTON_WIDTH/2;
 
-        if(Gdx.input.getX()<x+PLAY_BUTTON_WIDTH && Gdx.input.getX()>x && SpaceGame.HEIGHT - Gdx.input.getY()<PLAY_BUTTON_Y+PLAY_BUTTON_HEIGHT && SpaceGame.HEIGHT - Gdx.input.getY()>PLAY_BUTTON_Y) {
+        if(game.cam.getInputInGameWorld().x <x+PLAY_BUTTON_WIDTH && game.cam.getInputInGameWorld().x >x && SpaceGame.HEIGHT - game.cam.getInputInGameWorld().y <PLAY_BUTTON_Y+PLAY_BUTTON_HEIGHT && SpaceGame.HEIGHT - game.cam.getInputInGameWorld().y >PLAY_BUTTON_Y) {
             game.batch.draw(playButtonActive, x, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
 
         }else {

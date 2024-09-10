@@ -1,9 +1,8 @@
 package com.mygdx.game.entities;
 
-import com.badlogic.gdx.Gdx;
-
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.screens.SpaceGame;
 import com.mygdx.game.tools.CollisionRect;
 
 public class Bullet {
@@ -30,7 +29,7 @@ public class Bullet {
     }
     public void update (float deltaTime) {
         y+=SPEED*deltaTime;
-        if(x>Gdx.graphics.getHeight()) {
+        if(y > SpaceGame.HEIGHT) {
             remove=true;
         }
         rect.move(x,y);

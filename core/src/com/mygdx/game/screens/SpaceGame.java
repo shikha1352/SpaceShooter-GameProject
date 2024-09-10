@@ -1,13 +1,11 @@
-package com.mygdx.game;
+package com.mygdx.game.screens;
 
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Application.ApplicationType;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
-import com.mygdx.game.screens.MainMenuScreen;
+import com.mygdx.game.tools.GameCamera;
 
 import tnt.hollowbit.spacegame.tools.ScrollingBackground;
 
@@ -20,18 +18,16 @@ public class SpaceGame extends Game {
 
 	public SpriteBatch batch;
 	public ScrollingBackground scrollingBackground;
-	private OrthographicCamera cam;
-	private StretchViewport viewport;
+
+	public GameCamera cam;
+    public Object camera;
+
 
 	@Override
 	public void create () {
 
 		batch = new SpriteBatch();
-		cam = new OrthographicCamera();
-		viewport = new StretchViewport(WIDTH, HEIGHT, cam);
-		viewport.apply();
-		cam.position.set(WIDTH/2, HEIGHT/2, 0);
-		cam.update();
+		cam = new GameCamera(WIDTH, HEIGHT);
 
 
 		if( Gdx.app.getType() == ApplicationType.Android || Gdx.app.getType() == ApplicationType.iOS) IS_MOBOLE = true;
@@ -43,14 +39,13 @@ public class SpaceGame extends Game {
 
 	@Override
 	public void render () {
-		batch.setProjectionMatrix(cam.combined);
+		batch.setProjectionMatrix(cam.combined());
 		super.render();
 	}
  
 	@Override
 	public void resize(int width, int height) {
-		this.scrollingBackground.resize(width, height);
-		viewport.update(WIDTH, HEIGHT);
+		cam.update(width, height);
 		super.resize(width, height);
 	}
 

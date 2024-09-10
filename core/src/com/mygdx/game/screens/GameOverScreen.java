@@ -1,5 +1,6 @@
 package com.mygdx.game.screens;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -8,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.mygdx.game.SpaceGame;
 
 import tnt.hollowbit.spacegame.tools.ScrollingBackground;
 
@@ -52,25 +52,24 @@ public class GameOverScreen implements Screen {
     public void render(float v) {
         ScreenUtils.clear(0, 0, 0, 1);
         game.batch.begin();
-
         game.scrollingBackground.updateAndRender(delta, game.batch);
         
-        game.batch.draw(gameOverBanner, Gdx.graphics.getWidth() / 2 - MIRROR_WIDTH / 2, Gdx.graphics.getHeight() - MIRROR_HIGHT - 15, MIRROR_WIDTH, MIRROR_HIGHT);
+        game.batch.draw(gameOverBanner, SpaceGame.WIDTH / 2 - MIRROR_WIDTH / 2, SpaceGame.HEIGHT - MIRROR_HIGHT - 15, MIRROR_WIDTH, MIRROR_HIGHT);
         GlyphLayout scoreLayout=new GlyphLayout(scoreFont,"Score: \n"+score, Color.WHITE,0, Align.left,false);
         GlyphLayout highscoreLayout=new GlyphLayout(scoreFont,"highscore: \n"+highscore, Color.WHITE,0, Align.left,false);
-        scoreFont.draw(game.batch,scoreLayout,Gdx.graphics.getWidth()/2-scoreLayout.width/2,Gdx.graphics.getHeight()-MIRROR_HIGHT-15*2);
+        scoreFont.draw(game.batch,scoreLayout,SpaceGame.WIDTH/2-scoreLayout.width/2,SpaceGame.HEIGHT-MIRROR_HIGHT-15*2);
 
-        scoreFont.draw(game.batch,highscoreLayout,Gdx.graphics.getWidth()/2-scoreLayout.width/2,Gdx.graphics.getHeight()-MIRROR_HIGHT-scoreLayout.height-15*3);
+        scoreFont.draw(game.batch,highscoreLayout,SpaceGame.WIDTH/2-scoreLayout.width/2,SpaceGame.HEIGHT-MIRROR_HIGHT-scoreLayout.height-15*3);
 
         GlyphLayout tryAgainLayout=new GlyphLayout(scoreFont,"Try Again");
         GlyphLayout mainMenuLayout=new GlyphLayout(scoreFont,"Main Menu");
 
-        float tryAgainX=Gdx.graphics.getWidth()/2-tryAgainLayout.width/2;
-        float tryAgainY=Gdx.graphics.getHeight()/2-tryAgainLayout.height/2;
-        float mainMenuX=Gdx.graphics.getWidth()/2-mainMenuLayout.width/2;
-        float mainMenuY=Gdx.graphics.getWidth()/2-mainMenuLayout.width/2-tryAgainLayout.height-15;
+        float tryAgainX=SpaceGame.WIDTH/2-tryAgainLayout.width/2;
+        float tryAgainY=SpaceGame.HEIGHT/2-tryAgainLayout.height/2;
+        float mainMenuX=SpaceGame.WIDTH/2-mainMenuLayout.width/2;
+        float mainMenuY=SpaceGame.WIDTH/2-mainMenuLayout.width/2-tryAgainLayout.height-15;
 
-        float touchX=Gdx.input.getX(),touchY=Gdx.graphics.getHeight()-Gdx.input.getY();
+        float touchX = Game.cam.getInputInGameWorld().x,  touchY=SpaceGame.HEIGHT-Game.cam.getInputInGameWorld().y;
         //if try again and main menu is being pressed
         if(Gdx.input.isTouched()){
             //Try again
