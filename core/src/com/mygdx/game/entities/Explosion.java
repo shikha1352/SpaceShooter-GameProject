@@ -8,7 +8,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class Explosion {
     public static final float FRAME_LENGTH = 0.2f;
     public static final int OFFSET = 8;
-    public static final int SIZE = 32;
+    public static final int SIZE = 64;
+    public static final int IMAGE_SIZE = 32;
 
     private static Animation<TextureRegion> anim = null;
     private float x, y;
@@ -23,7 +24,7 @@ public class Explosion {
 
         if (anim == null) {
             Texture explosionTexture = new Texture("explosion.png");
-            TextureRegion[] frames = TextureRegion.split(explosionTexture, SIZE, SIZE)[0];
+            TextureRegion[] frames = TextureRegion.split(explosionTexture, IMAGE_SIZE, IMAGE_SIZE )[0];
             anim = new Animation<>(FRAME_LENGTH, frames);
         }
     }
@@ -36,6 +37,6 @@ public class Explosion {
     }
 
     public void render(SpriteBatch batch) {
-        batch.draw(anim.getKeyFrame(statetime), x, y);
+        batch.draw(anim.getKeyFrame(statetime), x, y, SIZE, SIZE);
     }
 }

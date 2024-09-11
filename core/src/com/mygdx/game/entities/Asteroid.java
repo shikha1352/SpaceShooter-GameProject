@@ -7,8 +7,8 @@ import com.mygdx.game.tools.CollisionRect;
 
 public class Asteroid {
     public static final int SPEED=250;
-    public static final int WIDTH=16;
-    public static final int HEIGHT=16;
+    public static final int WIDTH=32;
+    public static final int HEIGHT=32;
     private static Texture texture;
 
     float x,y;
@@ -33,7 +33,7 @@ public class Asteroid {
     }
 
     public void render(SpriteBatch batch) {
-        batch.draw(texture, x, y);
+        batch.draw(texture, x, y, WIDTH, HEIGHT);
     }
     public CollisionRect getCollisionRect(){
         return rect;

@@ -62,15 +62,26 @@ public class GameOverScreen implements Screen {
 
         scoreFont.draw(game.batch,highscoreLayout,SpaceGame.WIDTH/2-scoreLayout.width/2,SpaceGame.HEIGHT-MIRROR_HIGHT-scoreLayout.height-15*3);
 
+        float touchX = game.cam.getInputInGameWorld().x,  touchY=SpaceGame.HEIGHT-game.cam.getInputInGameWorld().y;
+        
         GlyphLayout tryAgainLayout=new GlyphLayout(scoreFont,"Try Again");
         GlyphLayout mainMenuLayout=new GlyphLayout(scoreFont,"Main Menu");
 
         float tryAgainX=SpaceGame.WIDTH/2-tryAgainLayout.width/2;
         float tryAgainY=SpaceGame.HEIGHT/2-tryAgainLayout.height/2;
         float mainMenuX=SpaceGame.WIDTH/2-mainMenuLayout.width/2;
-        float mainMenuY=SpaceGame.WIDTH/2-mainMenuLayout.width/2-tryAgainLayout.height-15;
+        float mainMenuY=SpaceGame.HEIGHT/2-mainMenuLayout.height/2-tryAgainLayout.height-50;
 
-        float touchX = game.cam.getInputInGameWorld().x,  touchY=SpaceGame.HEIGHT-game.cam.getInputInGameWorld().y;
+        // Check if hovering over try again button
+        if(touchX >= tryAgainX && touchX < tryAgainX + tryAgainLayout.width && touchY >= tryAgainY - tryAgainLayout.height  && touchY < tryAgainY ){
+            tryAgainLayout.setText(scoreFont, "Try Again", Color.YELLOW, 0, Align.left, false);
+        }
+
+        // Check if hovering over Main Menu button
+        if(touchX >= mainMenuX && touchX < mainMenuX + mainMenuLayout.width && touchY >= mainMenuY - mainMenuLayout.height  && touchY < mainMenuY ){
+            mainMenuLayout.setText(scoreFont, "Main Menu", Color.YELLOW, 0, Align.left, false);
+        }
+
         //if try again and main menu is being pressed
         if(Gdx.input.isTouched()){
             //Try again
