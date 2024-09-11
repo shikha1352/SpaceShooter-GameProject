@@ -10,7 +10,7 @@ public class DesktopLauncher {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
 		config.setWindowedMode(SpaceGame.WIDTH, SpaceGame.HEIGHT);
-		config.setResizable(false);
+		config.setResizable(true);
 		config.setTitle("Space Game");
 		new Lwjgl3Application(new SpaceGame(), config);
 	}

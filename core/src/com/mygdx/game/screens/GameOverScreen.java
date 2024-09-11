@@ -15,6 +15,7 @@ import tnt.hollowbit.spacegame.tools.ScrollingBackground;
 import com.badlogic.gdx.Preferences;
 
 public class GameOverScreen implements Screen {
+    
     private static final int MIRROR_WIDTH = 350;
     private static final int MIRROR_HIGHT = 100;
     SpaceGame game;
@@ -69,7 +70,7 @@ public class GameOverScreen implements Screen {
         float mainMenuX=SpaceGame.WIDTH/2-mainMenuLayout.width/2;
         float mainMenuY=SpaceGame.WIDTH/2-mainMenuLayout.width/2-tryAgainLayout.height-15;
 
-        float touchX = Game.cam.getInputInGameWorld().x,  touchY=SpaceGame.HEIGHT-Game.cam.getInputInGameWorld().y;
+        float touchX = game.cam.getInputInGameWorld().x,  touchY=SpaceGame.HEIGHT-game.cam.getInputInGameWorld().y;
         //if try again and main menu is being pressed
         if(Gdx.input.isTouched()){
             //Try again
